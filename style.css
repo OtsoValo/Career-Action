@@ -1,3 +1,25 @@
 #cssTest{
 	color:red;
 }
+
+ul{
+    list-style-type: none;
+}
+
+#rsvpact{ 
+  display: inline-block; 
+  width: 9%;
+}
+
+span{
+  font-weight:bold;
+}
+
+p.italic{
+  font-style: italic;
+}
+
+.rsvp-tex li{
+  display: inline-block; 
+  width: 9%;
+}
