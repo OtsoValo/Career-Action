@@ -39,21 +39,11 @@
 
     <div widget-section-header>Employer Info Sessions</div>
     
-  	<div widget-item icon-right="icon-angle-right" ng-click="showView1()" button>
-        <div widget-text>Prodigy Math Game</div>
+  	<div widget-item icon-right="icon-angle-right" ng-click="showView2(item)" button ng-repeat="item in company">
+        <div widget-text>{{item}}</div>
         <div widget-sub-text>Click to see discription</div>
     </div>
   
-  	<div widget-item icon-right="icon-angle-right" ng-click="showView2()" button>
-        <div widget-text>Nomis Solutions Inc.</div>
-        <div widget-sub-text>Click to see discription</div>
-    </div>
-  
-  	<div widget-item icon-right="icon-angle-right" ng-click="showView2()" button>
-        <div widget-text>Empolyer Name 3</div>
-        <div widget-sub-text>Click to see discription</div>
-    </div>
-
     <!-- OPEN DATA API EXAMPLE -->
 
     <!--<div widget-section-header>Open Data API Example</div>
@@ -69,21 +59,33 @@
     <!-- PORTAL DATA SOURCE EXAMPLE -->
 
     <div widget-section-header>My RSVP</div>
-    <div c="l in links['Student Services']">
+    <!--<div c="l in links['Student Services']">
         <div widget-item button icon-right="icon-link-ext" link="{{::l.Item2}}">
             <div widget-text>{{::l.Item1}}</div>
         </div>
-    </div>
+    </div>-->
   
   	<div style="background-color:#C0C0C0 ; padding:20px;">
       <div id="rsvp-text">
         <ul>
-        <li>Name1</li>
-        <li>Date</li>
-        <li>Time</li>
+        	<li><span>Prodigy Math Game</span></li>
+        	<li>March 2, 2015</li>
+        	<li>11:30 AM - 1:30 PM</li>
         </ul>
   	  </div>
     </div>
+  
+    <div style="padding:20px;">
+      <div id="rsvp-text">
+        <ul>
+        	<li><span>MTE Consultants Inc.</span></li>
+        	<li>March 3, 2015</li>
+        	<li>11:30 AM - 1:30 PM</li>
+        </ul>
+  	  </div>
+    </div>
+  	
+
 
     <!-- CSS EXAMPLE -->
 
@@ -98,6 +100,7 @@
 <!-- VIEWS FOR THE "DETAILS VIEWS EXAMPLE" -->
 
 <script type="text/ng-template" id="view2.html">
+  
     <div widget-section-header>Prodigy Math Game</div>
     <!--<div widget-item icon-right="icon-angle-right" ng-click="showView3()" button>-->
         <div widget-text>
@@ -118,6 +121,7 @@
 </script>
 
 <script type="text/ng-template" id="view2.html">
+  {{details}}
     <div widget-section-header>Nomis Solutions Inc</div>
     <!--<div widget-item icon-right="icon-angle-right" ng-click="showView3()" button>-->
         <div widget-text>
