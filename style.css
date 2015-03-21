@@ -19,7 +19,7 @@ p.italic{
   font-style: italic;
 }
 
-.rsvp-tex li{
+#rsvp-tex ul li{
   display: inline-block; 
   width: 9%;
 }
