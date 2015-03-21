@@ -2,6 +2,13 @@ angular.module('PortalApp')
 
 .controller('widgetCtrl', ['$scope', '$http', '$q', function ($scope, $http, $q) {
 
+
+
+	$scope.company = [];
+	$scope.time = [];
+	$scope.date = [];
+	$scope.description;
+  	$scope.AllData;
     // SETUP
 
     // Widget Configuration
@@ -9,7 +16,32 @@ angular.module('PortalApp')
         "title": "Test Project",
         "icon": "icon-bell"
     };
+  
+    // Show loading message in the first column
+    $scope.portalHelpers.showView('loading.html', 1);
+  
+    $http.get('/Develop/GetProxy?url=http://www.ceca.uwaterloo.ca/students/sessions.php').success(function(data){
+      //console.log(data);
+      $scope.AllData = $(data);
+      $scope.AllData = $scope.AllData.find('[onmouseover]');
+      
+      
+      // extract key elements from AllData
+      for (i = 0; i < $scope.AllData.length; i++) {
+          $scope.company.push(String($scope.AllData[i].getAttribute("onmouseover")).split("<br>")[0].split("</b>: ")[1]);
+          $scope.date.push(String($scope.AllData[i].getAttribute("onmouseover")).split("<br>")[1].split("</b>: ")[1]);
+          $scope.time.push(String($scope.AllData[i].getAttribute("onmouseover")).split("<br>")[2].split("</b>: ")[1]);
+      }
+        //console.log("Company: " + company);
+      $scope.portalHelpers.showView('main.html', 1);
 
+    });
+
+    
+    
+
+  
+  
     // Initialize input variable
     $scope.insertValue = { value: "Testing" };
   
@@ -50,11 +82,12 @@ angular.module('PortalApp')
                 $scope.dbData = result;
             });
         }
-    };
-
+    }; 
+    
     // DETAILS VIEW EXAMPLE--layers
   
-    $scope.showView2 = function () {
+    $scope.showView2 = function (item) {
+      	$scope.details = item;
         $scope.portalHelpers.showView('view2.html', 2);
     }
 
@@ -62,6 +95,8 @@ angular.module('PortalApp')
         $scope.portalHelpers.showView('view3.html', 3);
     }
 
+    
+    
     // PORTAL DATA SOURCE EXAMPLE
 
     // Get data for the widget
