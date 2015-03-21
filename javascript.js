@@ -2,12 +2,11 @@ angular.module('PortalApp')
 
 .controller('widgetCtrl', ['$scope', '$http', '$q', function ($scope, $http, $q) {
 
-  	var company = {};
-	var time;
-	var date;
-	var description;
-	var hello;
-	var count;
+  	$scope.company = [];
+	$scope.time = [];
+	$scope.date = [];
+	$scope.description;
+  	$scope.AllData;
     // SETUP
 
     // Widget Configuration
@@ -20,9 +19,9 @@ angular.module('PortalApp')
     $scope.portalHelpers.showView('loading.html', 1);
   
     $http.get('/Develop/GetProxy?url=http://www.ceca.uwaterloo.ca/students/sessions.php').success(function(data){
-	console.log(data);
-    AllData = $(data);
-    AllData = AllData.find('[onmouseover]');
+	//console.log(data);
+    $scope.AllData = $(data);
+    $scope.AllData = $scope.AllData.find('[onmouseover]');
     
     // determine size of object
     /*for (var k in AllData) {
@@ -33,12 +32,13 @@ angular.module('PortalApp')
     
     
     // extract key elements from AllData
-    for (i = 0; i < AllData.length; i++) {
-    	company.push(String(AllData[i].getAttribute("onmouseover")).split("<br>")[0].split("</b>: ")[1]);
-      	
+    for (i = 0; i < $scope.AllData.length; i++) {
+    	$scope.company.push(String($scope.AllData[i].getAttribute("onmouseover")).split("<br>")[0].split("</b>: ")[1]);
+      	$scope.date.push(String($scope.AllData[i].getAttribute("onmouseover")).split("<br>")[1].split("</b>: ")[1]);
+      	$scope.time.push(String($scope.AllData[i].getAttribute("onmouseover")).split("<br>")[2].split("</b>: ")[1]);
     }
-      console.log("Company: " + company);
-	$scope.portalHelpers.showView(company, 1);
+      //console.log("Company: " + company);
+	$scope.portalHelpers.showView($scope.company, 1);
       
   });
 
