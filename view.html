@@ -9,7 +9,7 @@
 <script type="text/ng-template" id="main.html">
 
     <!-- DATABASE EXAMPLE -->
-    <div widget-section-header>Database test</div>
+    <!--<div widget-section-header>Career Action</div>
     <div ng-if="dbData.error">
         <div widget-item>
             <div widget-text>{{dbData.error}}, <a ng-click="createTable()">create table</a>.</div>
@@ -19,7 +19,7 @@
         <div widget-item>
             <form class="form-inline" ng-submit="insertData()">
                 <div class="input-group" style="width: 100%;">
-                    <input type="text" class="form-control" ng-model="insertValue.value" placeholder="Enter some text and submit" />
+                    <input type="text" class="form-control" ng-model="insertValue.value" placeholder="{{insertValue.value}}" />
                     <span class="input-group-btn" style="overflow:hidden;">
                         <button class="btn btn-primary glyphicon glyphicon glyphicon-ok btn" type="submit" style="margin-top: -1px;">
                         </button>
@@ -33,56 +33,113 @@
             <div widget-text>UserId: {{item.userId}}</div>
             <div widget-text>Value: {{item.value}}</div>
         </div>
-    </div>
+    </div>-->
+  
     <!-- DETAILS VIEWS EXAMPLE -->
 
-    <div widget-section-header>Details View Example</div>
-    <div widget-item icon-right="icon-angle-right" ng-click="showView2()" button>
-        <div widget-text>This view is displayed in column 1</div>
-        <div widget-sub-text>Click here to show view 2 in column 2</div>
+    <div widget-section-header>Employer Info Sessions</div>
+    
+  	<div widget-item icon-right="icon-angle-right" ng-click="showView1()" button>
+        <div widget-text>Prodigy Math Game</div>
+        <div widget-sub-text>Click to see discription</div>
+    </div>
+  
+  	<div widget-item icon-right="icon-angle-right" ng-click="showView2()" button>
+        <div widget-text>Nomis Solutions Inc.</div>
+        <div widget-sub-text>Click to see discription</div>
+    </div>
+  
+  	<div widget-item icon-right="icon-angle-right" ng-click="showView2()" button>
+        <div widget-text>Empolyer Name 3</div>
+        <div widget-sub-text>Click to see discription</div>
     </div>
 
     <!-- OPEN DATA API EXAMPLE -->
 
-    <div widget-section-header>Open Data API Example</div>
+    <!--<div widget-section-header>Open Data API Example</div>
     <div widget-item ng-if="openDataExampleData.error">
         <div widget-sub-text>{{openDataExampleData.error}}</div>
     </div>
     <div widget-item ng-if="!openDataExampleData.error">
         <div widget-sub-text>List of WatCard Locations:</div>
         <div widget-text ng-repeat="item in openDataExampleData.data">{{item.vendor_name}}</div>
-    </div>
+    </div>-->
 
+  
     <!-- PORTAL DATA SOURCE EXAMPLE -->
 
-    <div widget-section-header>Title</div>
-    <div ng-repeat="l in links['Student Services']">
+    <div widget-section-header>My RSVP</div>
+    <div c="l in links['Student Services']">
         <div widget-item button icon-right="icon-link-ext" link="{{::l.Item2}}">
             <div widget-text>{{::l.Item1}}</div>
         </div>
     </div>
+  
+  	<div style="background-color:#C0C0C0 ; padding:20px;">
+      <div id="rsvp-text">
+        <ul>
+        <li>Name1</li>
+        <li>Date</li>
+        <li>Time</li>
+        </ul>
+  	  </div>
+    </div>
 
     <!-- CSS EXAMPLE -->
 
-    <div widget-section-header>CSS test</div>
+    <!--<div widget-section-header>CSS test</div>
     <div widget-item>
         <span id="cssTest">This is a CSS test</span>
-    </div>
+    </div>-->
+  
+  
 </script>
 
 <!-- VIEWS FOR THE "DETAILS VIEWS EXAMPLE" -->
 
 <script type="text/ng-template" id="view2.html">
-    <div widget-section-header>View 2</div>
-    <div widget-item icon-right="icon-angle-right" ng-click="showView3()" button>
-        <div widget-text>This view is displayed in column 2</div>
-        <div widget-sub-text>Click here to show view 3 in column 3</div>
-    </div>
+    <div widget-section-header>Prodigy Math Game</div>
+    <!--<div widget-item icon-right="icon-angle-right" ng-click="showView3()" button>-->
+        <div widget-text>
+          <ul>
+  			<li><span>Date:</span> March 2, 2015</li>
+  			<li><span>Time:</span> 11:30 AM - 1:30 PM</li>
+            <li><span>Location:</span> University Club - Burgundy Room</li>
+            <li><span>Web Site:</span><a href="https://prodigygame.com/jobs/"> prodigygame.com/jobs</a></li>
+            <li widget-sub-text><em>For Students - MATH - Computer Science, ENG - System Design, ENG - Software, ENG - Mechatronics</em></li>
+            <p>
+              <p>Prodigy is using game-based learning to transform the way children around the world learn math.</p>
+              <p>Every day, over 1,000,000 students (75% of all 5-13 year olds in Ontario) are rushing home to voluntarily answer math questions because Prodigy has been built from the ground up to be more than just a simple math game. Prodigy is an entire virtual world where children can play and learn with friends at a pace that's right for them.</p>
+              <p>By joining our team, you will have the opportunity to help an entire generation of students to LOVE learning math while working alongside some of the brightest and most passionate people in education and gaming.</p>
+            </p>
+            <div widget-sub-text><a id="rsvpact">RSVP</a><a id="rsvpact">Cancel</a></div>
+		  </ul> 
+		</div>
 </script>
 
-<script type="text/ng-template" id="view3.html">
+<script type="text/ng-template" id="view2.html">
+    <div widget-section-header>Nomis Solutions Inc</div>
+    <!--<div widget-item icon-right="icon-angle-right" ng-click="showView3()" button>-->
+        <div widget-text>
+          <ul>
+            <li><span>Title: </span>{{InfoSession.title}}</li>
+  			<li><span>Date: </span>{{InfoSession.date}}</li>
+  			<li><span>Time:</span> 5:00 PM - 7:00 PM</li>
+            <li><span>Location:</span> TC2218</li>
+            <li><span>Web Site:</span><a href="http://www.nomissolutions.com/"> www.nomissolutions.com</a></li>
+            <li widget-sub-text><em>For Students - MATH - Mathematical Optimization, MATH - Computer Science, MATH - Combinatorics & Optimization, ENG - System Design, ENG - Software, ENG - Mechatronics, ENG - Management, ENG - Computer</em></li>
+            <p>
+              <p>Nomis is a fast-growth company that combines cutting-edge Silicon Valley approaches to big data, advanced modeling, and deep analytics to help large and medium-sized retail banks better understand their customers. We help these banks deliver win-win products and pricing in an environment that is increasingly competitive, highly disruptive, and with an expectation of rising interest rates. With experience in over 75 implementations, Nomis customers are on track to optimize $1 trillion in banking transactions and generate $1 billion in incremental profits.</p>
+            </p>
+            <div widget-sub-text><a id="rsvpact">RSVP</a><a id="rsvpact">Cancel</a></div>
+		  </ul> 
+		</div>
+</script>
+
+
+<!--<script type="text/ng-template" id="view3.html">
     <div widget-section-header>View 3</div>
     <div widget-item>
         <div widget-text>This view is displayed in column 3</div>
     </div>
-</script>
+</script>-->
