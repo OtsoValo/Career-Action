@@ -2,6 +2,12 @@ angular.module('PortalApp')
 
 .controller('widgetCtrl', ['$scope', '$http', '$q', function ($scope, $http, $q) {
 
+  	var company = {};
+	var time;
+	var date;
+	var description;
+	var hello;
+	var count;
     // SETUP
 
     // Widget Configuration
@@ -9,71 +15,32 @@ angular.module('PortalApp')
         "title": "Test Project",
         "icon": "icon-bell"
     };
-
-    // Initialize input variable
-    $scope.insertValue = { value: "" };
-
+  
     // Show loading message in the first column
     $scope.portalHelpers.showView('loading.html', 1);
-
-    // Show loading animation
-    $scope.portalHelpers.toggleLoading(true);
-
-    // DATABASE EXAMPLE
-
-    $scope.getDbData = function () {
-        $scope.portalHelpers.invokeServerFunction('getData').then(function (result) {
-            $scope.dbData = result;
-        });
+  
+    $http.get('/Develop/GetProxy?url=http://www.ceca.uwaterloo.ca/students/sessions.php').success(function(data){
+	console.log(data);
+    AllData = $(data);
+    AllData = AllData.find('[onmouseover]');
+    
+    // determine size of object
+    /*for (var k in AllData) {
+    	if (hello.hasOwnProperty(k)) { 
+          ++count; 
+        } 
+    }*/
+    
+    
+    // extract key elements from AllData
+    for (i = 0; i < AllData.length; i++) {
+    	company.push(String(AllData[i].getAttribute("onmouseover")).split("<br>")[0].split("</b>: ")[1]);
+      	
     }
-
-    // Try to get test data from the database
-    $scope.getDbData();
-
-    // Create table
-    $scope.createTable = function () {
-        $scope.portalHelpers.invokeServerFunction('createTable').then(function (result) {
-            $scope.getDbData();
-        });
-    }
-
-    // Insert a value into the database
-    $scope.insertData = function () {
-        if ($scope.insertValue.value.length > 50)
-            alert('value should be less than 50 characters');
-        else {
-            $scope.portalHelpers.invokeServerFunction('insert', { value: $scope.insertValue.value }).then(function (result) {
-                $scope.dbData = result;
-            });
-        }
-    };
-
-    // DETAILS VIEW EXAMPLE
-    $scope.showView2 = function () {
-        $scope.portalHelpers.showView('view2.html', 2);
-    }
-
-    $scope.showView3 = function () {
-        $scope.portalHelpers.showView('view3.html', 3);
-    }
-
-    // PORTAL DATA SOURCE EXAMPLE
-
-    // Get data for the widget
-    $http.get('/ImportantLinks/JSONSource').success(function (data) {
-        // Make data available in the scope
-        $scope.links = data;
-        // Turn off loading animation
-        $scope.portalHelpers.toggleLoading(false);
-        // Show main view
-        $scope.portalHelpers.showView('main.html', 1);
-    });
-
-    // OPEN API EXAMPLE
-    $scope.portalHelpers.invokeServerFunction('getOpenData').then(function (result) {
-        $scope.openDataExampleData = result;
-    });
-
+      console.log("Company: " + company);
+	$scope.portalHelpers.showView(company, 1);
+      
+  });
 
 }])
 // Custom directive example
