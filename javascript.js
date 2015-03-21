@@ -11,7 +11,10 @@ angular.module('PortalApp')
     };
 
     // Initialize input variable
-    $scope.insertValue = { value: "" };
+    $scope.insertValue = { value: "Testing" };
+  
+  	//Dummy data for testing
+  $scope.InfoSession = { date:"March 2, 2015", title: "Info Session" };
 
     // Show loading message in the first column
     $scope.portalHelpers.showView('loading.html', 1);
@@ -26,6 +29,7 @@ angular.module('PortalApp')
             $scope.dbData = result;
         });
     }
+    $scope.InfoSession.title = $scope.insertValue.value;
 
     // Try to get test data from the database
     $scope.getDbData();
@@ -48,7 +52,8 @@ angular.module('PortalApp')
         }
     };
 
-    // DETAILS VIEW EXAMPLE
+    // DETAILS VIEW EXAMPLE--layers
+  
     $scope.showView2 = function () {
         $scope.portalHelpers.showView('view2.html', 2);
     }
